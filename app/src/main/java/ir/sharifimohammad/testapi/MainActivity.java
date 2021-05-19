@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 
 import java.util.ArrayList;
@@ -35,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
+
+        IMapController mapController = map.getController();
+        mapController.setZoom(9.5);
+        GeoPoint startPoint = new GeoPoint(35.715298, 51.404343);
+        mapController.setCenter(startPoint);
 
         requestPermissionsIfNecessary(new String[] {
                 // if you need to show the current location, uncomment the line below
